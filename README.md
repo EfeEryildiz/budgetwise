@@ -88,3 +88,22 @@ npm run dev
 - Toast notifications for user feedback
 
 - CORS and credential support across client/server
+
+## 🧪 Coming Soon
+- Persistent session via cookies
+
+- Expense tracking with graphs
+
+- Monthly summaries
+
+- JWT token refresh
+
+## 📤 Deployment
+- Frontend: Deploy with Netlify or Vercel
+
+- Backend: Deploy with Render, Railway, or Fly.io
+
+- Use environment variables from your local .env setup
+
+## 👤 Author
+Developed by Efe Eryildiz
