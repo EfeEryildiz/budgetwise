@@ -34,7 +34,7 @@ budgetwise/
 
 ## 🛠️ Getting Started
 
-###📦 Setup Instructions
+📦 Setup Instructions
 
 🔹 Server (Backend)
 ```bash
