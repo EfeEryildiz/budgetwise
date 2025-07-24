@@ -41,8 +41,10 @@ budgetwise/
 ```bash
 git clone https://github.com/EfeEryildiz/budgetwise.git
 cd budgetwise
-Copy
-Edit
+```
+
+
+🔹 Server (Backend)
 cd server
 npm install
 Create a .env file in /server:
