@@ -36,7 +36,8 @@ budgetwise/
 
 ### 1. Clone the repository
 
-📦 Setup Instructions
+####📦 Setup Instructions
+
 🔹 Server (Backend)
 ```bash
 git clone https://github.com/EfeEryildiz/budgetwise.git
@@ -44,19 +45,48 @@ cd budgetwise
 ```
 
 
-🔹 Server (Backend)
+####🔹 Server (Backend)
+```bash
 cd server
 npm install
+```
 Create a .env file in /server:
 
-env
+```env
 Copy
 Edit
 DATABASE_URL=your_database_url
 JWT_SECRET=your_jwt_secret
+```
 Run the server:
 
-bash
-Copy
-Edit
+```bash
 npm run dev
+```
+🔹 Client (Frontend)
+
+```bash
+cd client
+npm install
+```
+
+Create a .env file in /client (optional):
+```env
+VITE_API_URL=http://localhost:
+```
+Run the frontend:
+
+```bash
+npm run dev
+```
+
+## 🔐 Features
+- User registration & login (with secure hashed passwords)
+
+- Persistent session via cookies
+
+- Frontend protected routes
+
+- Toast notifications for user feedback
+
+- CORS and credential support across client/server
