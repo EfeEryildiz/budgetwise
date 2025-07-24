@@ -43,8 +43,7 @@ git clone https://github.com/EfeEryildiz/budgetwise.git
 cd budgetwise
 ```
 
-
-####🔹 Server (Backend)
+🔹 Server (Backend)
 ```bash
 cd server
 npm install
