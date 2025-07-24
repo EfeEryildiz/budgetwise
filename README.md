@@ -26,10 +26,11 @@ BudgetWise is a full-stack budgeting app designed to help users take control of 
 
 ## 🖥️ Project Structure
 
+```
 budgetwise/
 ├── client/ # React frontend
 └── server/ # Express backend
-
+```
 ---
 
 ## 🛠️ Getting Started
