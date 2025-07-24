@@ -34,9 +34,7 @@ budgetwise/
 
 ## 🛠️ Getting Started
 
-### 1. Clone the repository
-
-####📦 Setup Instructions
+###📦 Setup Instructions
 
 🔹 Server (Backend)
 ```bash
