@@ -1,15 +1,47 @@
-# Keep environment variables out of version control
-.env
-
-/src/generated/prisma
-
-# Ignore node_modules
+# Node modules (frontend and backend)
 node_modules/
 client/node_modules/
 server/node_modules/
 
-
-# Ignore build output
+# Build outputs
 dist/
-.next/
-.turbo/
+build/
+*.tsbuildinfo
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Env files
+.env
+.env.*.local
+
+# VS Code settings
+.vscode/
+*.code-workspace
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Prisma
+prisma/dev.db
+prisma/dev.db-journal
+prisma/migrations/*/README.md
+.prisma/
+
+# Lockfiles (optional — depending on whether you're committing them)
+# Uncomment if you want to ignore
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# Coverage reports
+coverage/
+*.lcov
+
+# Optional: ignore IDE-specific stuff
+.idea/
+*.sublime-workspace
