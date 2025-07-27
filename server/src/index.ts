@@ -8,7 +8,6 @@ dotenv.config();
 
 const app = express();
 
-// CORS for dev
 app.use(cors({
   origin: 'http://localhost:3000',
   credentials: true,
@@ -16,13 +15,11 @@ app.use(cors({
 
 app.use(express.json());
 
-// API routes
 app.use('/api/auth', authRoutes);
 
-// Serve frontend
-const __dirnamePath = path.resolve(); // important for ESM compatibility
+// 🛠 Fix: correct path to React build folder
+const __dirnamePath = path.resolve();
 app.use(express.static(path.join(__dirnamePath, 'client', 'build')));
-
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirnamePath, 'client', 'build', 'index.html'));
 });
