@@ -20,7 +20,7 @@ app.use('/api/auth', authRoutes);
 // 🛠 Fix: correct path to React build folder
 const __dirnamePath = path.resolve();
 app.use(express.static(path.join(__dirnamePath, 'client', 'build')));
-app.get('*', (req, res) => {
+app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirnamePath, 'client', 'build', 'index.html'));
 });
 
