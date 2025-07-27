@@ -1,21 +1,33 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const dotenv_1 = __importDefault(require("dotenv"));
-const cors_1 = __importDefault(require("cors"));
-const auth_1 = __importDefault(require("./routes/auth"));
-dotenv_1.default.config();
-const app = (0, express_1.default)();
-// 🛠️ Fix: Allow CORS for frontend
-app.use((0, cors_1.default)({
-    origin: 'http://localhost:3000',
-    credentials: true,
+import express from 'express';
+import path from 'path';
+import dotenv from 'dotenv';
+import cors from 'cors';
+import authRoutes from './routes/auth';
+
+dotenv.config();
+
+const app = express();
+
+// Allow requests from frontend
+app.use(cors({
+  origin: process.env.CLIENT_ORIGIN || 'http://localhost:3000',
+  credentials: true,
 }));
-app.use(express_1.default.json());
-// ⛔ This must come AFTER CORS
-app.use('/api/auth', auth_1.default);
-const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+app.use(express.json());
+
+// Your API routes
+app.use('/api/auth', authRoutes);
+
+// ✅ Serve static files from React build
+app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
+
+// ✅ Serve React index.html for unknown routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
+});
+
+const PORT = process.env.PORT || 10000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
