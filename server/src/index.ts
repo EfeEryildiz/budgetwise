@@ -15,14 +15,21 @@ const corsOrigin = process.env.NODE_ENV === 'production'
 app.use(cors({ origin: corsOrigin, credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
+
+// API routes first
 app.use('/api/auth', authRoutes);
 
-// 🛠 VITE USES 'dist' NOT 'build'
+// Serve static files
 const __dirnamePath = path.resolve();
 app.use(express.static(path.join(__dirnamePath, 'client', 'dist')));
 
-app.get('*', (req, res) => {  // ← Changed from app.use to app.get
-  res.sendFile(path.join(__dirnamePath, 'client', 'dist', 'index.html'));
+// Simple fallback without wildcards
+app.use((req, res) => {
+  if (!req.path.startsWith('/api')) {
+    res.sendFile(path.join(__dirnamePath, 'client', 'dist', 'index.html'));
+  } else {
+    res.status(404).json({ error: 'Not found' });
+  }
 });
 
 const PORT = process.env.PORT || 8080;
