@@ -11,16 +11,16 @@ const corsOrigin = process.env.NODE_ENV === 'production'
   ? process.env.FRONTEND_URL 
   : 'http://localhost:3000';
 
-app.use(cors({ origin: corsOrigin, credentials: true })); // ← ADD THIS LINE
+app.use(cors({ origin: corsOrigin, credentials: true }));
 app.use(express.json());
 app.use('/api/auth', authRoutes);
 
-// 🛠 Fix: correct path to React build folder
+// 🛠 VITE USES 'dist' NOT 'build'
 const __dirnamePath = path.resolve();
-app.use(express.static(path.join(__dirnamePath, 'client', 'build')));
+app.use(express.static(path.join(__dirnamePath, 'client', 'dist')));
 
 app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirnamePath, 'client', 'build', 'index.html'));
+  res.sendFile(path.join(__dirnamePath, 'client', 'dist', 'index.html'));
 });
 
 const PORT = process.env.PORT || 8080;
