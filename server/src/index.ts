@@ -19,14 +19,14 @@ app.use(cookieParser());
 // API routes first
 app.use('/api/auth', authRoutes);
 
-// Serve static files
-const __dirnamePath = path.resolve();
-app.use(express.static(path.join(__dirnamePath, 'client', 'dist')));
+// Serve static files - use __dirname for proper path resolution in production
+const clientPath = path.resolve(__dirname, '../../client/dist');
+app.use(express.static(clientPath));
 
 // Simple fallback without wildcards
 app.use((req, res) => {
   if (!req.path.startsWith('/api')) {
-    res.sendFile(path.join(__dirnamePath, 'client', 'dist', 'index.html'));
+    res.sendFile(path.join(clientPath, 'index.html'));
   } else {
     res.status(404).json({ error: 'Not found' });
   }
