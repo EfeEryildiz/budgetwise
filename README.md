@@ -8,6 +8,7 @@ BudgetWise is a full-stack budgeting app designed to help users take control of 
 
 ### Frontend (Client)
 - **React** with **TypeScript**
+- **Vite** for build tooling
 - **Tailwind CSS** for styling
 - **React Router** for routing
 - **Axios** for API calls
@@ -37,7 +38,7 @@ budgetwise/
 
 📦 Setup Instructions
 
-🔹 Server (Backend)
+🔹 Clone the Repository
 ```bash
 git clone https://github.com/EfeEryildiz/budgetwise.git
 cd budgetwise
@@ -48,32 +49,39 @@ cd budgetwise
 cd server
 npm install
 ```
-Create a .env file in /server:
+Create a .env file in /server (copy from .env.example):
 
 ```env
-Copy
-Edit
-DATABASE_URL=your_database_url
-JWT_SECRET=your_jwt_secret
+DATABASE_URL="postgresql://username:password@localhost:5432/budgetwise"
+JWT_SECRET="your-super-secret-jwt-key-change-this-in-production"
+FRONTEND_URL="https://your-frontend-domain.com"
+PORT=8080
+NODE_ENV="development"
 ```
-Run the server:
 
+Run Prisma migrations:
+```bash
+npx prisma migrate dev
+npx prisma generate
+```
+
+Run the server:
 ```bash
 npm run dev
 ```
-🔹 Client (Frontend)
 
+🔹 Client (Frontend)
 ```bash
 cd client
 npm install
 ```
 
-Create a .env file in /client (optional):
+Create a .env file in /client (copy from .env.example):
 ```env
-VITE_API_URL=http://localhost:
+VITE_API_URL="http://localhost:8080"
 ```
-Run the frontend:
 
+Run the frontend:
 ```bash
 npm run dev
 ```
