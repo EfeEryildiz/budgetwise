@@ -18,26 +18,18 @@ const RegisterPage = () => {
   e.preventDefault();
   setError('');
 
-  try {
-    await axios.post('http://localhost:8080/api/auth/register', {
-    name,
-    email,
-    password,
-    }, { withCredentials: true })
-
-    toast.success('Account created successfully!', {
-        position: "top-right",
-        autoClose: 3000,
-        theme: 'colored',
-    });
-
-    navigate('/');
-
+   try {
+    await axios.post(
+      '/api/auth/register',
+      { name, email, password },
+      { withCredentials: true }
+    )
+    toast.success('Registration successful!')
+    navigate('/login')
   } catch (err: any) {
-    console.error('Network or server error:', err);
-    setError(err?.response?.data?.message || 'Something went wrong');
+    toast.error(err.response?.data?.message || 'Registration failed')
   }
-};
+}
 
 
   return (

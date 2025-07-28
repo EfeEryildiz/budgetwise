@@ -1,11 +1,15 @@
-import { Navigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
-import { JSX } from 'react';
+import { ReactNode } from 'react'
+import { Navigate, useLocation } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext'
 
-const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
-  const { isAuthenticated } = useAuth();
+export default function ProtectedRoute({ children }: { children: ReactNode }) {
+  const { user } = useAuth()
+  const location = useLocation()
 
-  return isAuthenticated ? children : <Navigate to="/" replace />;
-};
+  if (user === null) {
+    // while checking session, you could return a spinner
+    return <Navigate to="/login" state={{ from: location }} replace />
+  }
 
-export default ProtectedRoute;
+  return <>{children}</>
+}
