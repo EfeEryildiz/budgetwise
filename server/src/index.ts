@@ -21,7 +21,7 @@ app.use('/api/auth', authRoutes);
 const __dirnamePath = path.resolve();
 app.use(express.static(path.join(__dirnamePath, 'client', 'dist')));
 
-app.get('/*', (req, res) => {
+app.get('*', (req, res) => {  // ← Changed from app.use to app.get
   res.sendFile(path.join(__dirnamePath, 'client', 'dist', 'index.html'));
 });
 
